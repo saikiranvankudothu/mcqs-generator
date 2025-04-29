@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCQ Generator - Create Multiple Choice Questions</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <i class="fas fa-graduation-cap mr-2"></i>MCQ Generator
+        </a>
+        <div class="theme-switch-wrapper ml-auto">
+          <span class="mr-2"><i class="fas fa-sun"></i></span>
+          <label class="theme-switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <span class="ml-2"><i class="fas fa-moon"></i></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="main-container">
+            <h1 class="text-center mb-4">Generate Multiple Choice Questions</h1>
+            <p class="lead text-center mb-4">
+              Create high-quality MCQs from URLs, text, or uploaded files with
+              our AI-powered generator.
+            </p>
+
+            <form method="POST" enctype="multipart/form-data">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <i class="fas fa-link mr-2"></i>From Website
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="url">Enter URL</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-globe"></i
+                        ></span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="url"
+                        name="url"
+                        placeholder="https://example.com/article"
+                      />
+                    </div>
+                    <small class="form-text text-muted"
+                      >The system will extract content from the provided
+                      URL.</small
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <i class="fas fa-font mr-2"></i>From Text
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="manual_text">Enter Text</label>
+                    <textarea
+                      class="form-control"
+                      id="manual_text"
+                      name="manual_text"
+                      rows="5"
+                      placeholder="Paste or type text here..."
+                    ></textarea>
+                    <small class="form-text text-muted"
+                      >Good quality text provides better questions.</small
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <i class="fas fa-file-upload mr-2"></i>From Files
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="file">Upload PDF or TXT Files</label>
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        id="file"
+                        name="files[]"
+                        multiple
+                      />
+                      <label class="custom-file-label" for="file"
+                        >Choose file(s)</label
+                      >
+                    </div>
+                    <small class="form-text text-muted"
+                      >Supported formats: PDF, TXT</small
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h5 class="mb-0"><i class="fas fa-cog mr-2"></i>Options</h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="num_questions">Number of Questions</label>
+                    <select
+                      class="form-control"
+                      id="num_questions"
+                      name="num_questions"
+                    >
+                      <option value="5">5 questions</option>
+                      <option value="10">10 questions</option>
+                      <option value="15">15 questions</option>
+                      <option value="20">20 questions</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="fas fa-magic mr-2"></i>Generate MCQs
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto">
+      <div class="container">
+        <p class="text-center mb-0">
+          MCQ Generator &copy; 2025 | AI-Powered Educational Tool
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+  </body>
+</html>

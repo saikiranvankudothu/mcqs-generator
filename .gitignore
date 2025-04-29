@@ -1,0 +1,4 @@
+mcqvenv/
+__pycache__/
+*.pyc
+nlp/

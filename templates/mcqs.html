@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated MCQs - Quiz View</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <i class="fas fa-graduation-cap mr-2"></i>MCQ Generator
+        </a>
+        <div class="navbar-nav mr-auto">
+          <a class="nav-link" href="{{ url_for('index') }}">
+            <i class="fas fa-home mr-1"></i>Home
+          </a>
+        </div>
+        <div class="theme-switch-wrapper">
+          <span class="mr-2"><i class="fas fa-sun"></i></span>
+          <label class="theme-switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <span class="ml-2"><i class="fas fa-moon"></i></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="main-container">
+            <h1 class="text-center mb-4">
+              <i class="fas fa-question-circle mr-2"></i>Generated MCQs
+            </h1>
+            <p class="lead text-center mb-4">
+              Answer the questions below and check your results.
+            </p>
+
+            <div id="quiz-container">
+              {% for index, mcq in mcqs %}
+              <div class="card mb-4 question-card">
+                <div class="card-header">
+                  <h5 class="mb-0">Question {{ index }}</h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text mb-4">{{ mcq[0] }}?</p>
+                  <form>
+                    {% set options = ['A', 'B', 'C', 'D'] %} {% set num_choices
+                    = mcq[1]|length %} {% for choice_index in range(num_choices)
+                    %}
+                    <div class="custom-control custom-radio mb-2">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="answer{{ index }}"
+                        id="choice{{ index }}{{ choice_index }}"
+                        value="{{ options[choice_index] }}"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="choice{{ index }}{{ choice_index }}"
+                      >
+                        <strong>{{ options[choice_index]}}.</strong> {{
+                        mcq[1][choice_index] }}
+                      </label>
+                    </div>
+                    {% endfor %}
+                  </form>
+                  <div class="correct-answer mt-3 p-2 bg-light">
+                    <i class="fas fa-check-circle mr-2"></i>Correct Answer:
+                    <strong>{{ mcq[2] }}</strong>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+              <div class="text-center mb-4">
+                <button id="show-results-btn" class="btn btn-primary">
+                  <i class="fas fa-check-circle mr-2"></i>Show Answers
+                </button>
+                <a
+                  href="{{ url_for('download_pdf') }}"
+                  id="download-pdf-btn"
+                  class="btn btn-success"
+                  style="display: none"
+                >
+                  <i class="fas fa-file-pdf mr-2"></i>Download PDF
+                </a>
+                <a href="{{ url_for('result') }}" class="btn btn-info">
+                  <i class="fas fa-list-alt mr-2"></i>View as List
+                </a>
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                  <i class="fas fa-plus mr-2"></i>Create New MCQs
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto">
+      <div class="container">
+        <p class="text-center mb-0">
+          MCQ Generator &copy; 2025 | AI-Powered Educational Tool
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+  </body>
+</html>

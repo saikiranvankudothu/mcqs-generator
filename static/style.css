@@ -1,0 +1,306 @@
+:root {
+  /* Light Theme Variables */
+  --light-bg: #f8f9fa;
+  --light-container-bg: #ffffff;
+  --light-text: #212529;
+  --light-card-bg: #ffffff;
+  --light-card-border: #dee2e6;
+  --light-primary: #007bff;
+  --light-secondary: #6c757d;
+  --light-success: #28a745;
+  --light-shadow: rgba(0, 0, 0, 0.1);
+  --light-input-bg: #ffffff;
+
+  /* Dark Theme Variables */
+  --dark-bg: #121212;
+  --dark-container-bg: #1e1e1e;
+  --dark-text: #e0e0e0;
+  --dark-card-bg: #2d2d2d;
+  --dark-card-border: #444444;
+  --dark-primary: #2196f3;
+  --dark-secondary: #757575;
+  --dark-success: #4caf50;
+  --dark-shadow: rgba(0, 0, 0, 0.5);
+  --dark-input-bg: #333333;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+/* Light Theme (Default) */
+body.light-theme {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+/* Dark Theme */
+body.dark-theme {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.container-fluid {
+  max-width: 1200px;
+}
+
+/* Main content container */
+.main-container {
+  background-color: var(--light-container-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--light-shadow);
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-theme .main-container {
+  background-color: var(--dark-container-bg);
+  box-shadow: 0 4px 20px var(--dark-shadow);
+}
+
+/* Cards */
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--light-card-border);
+  box-shadow: 0 2px 8px var(--light-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.3s ease;
+  margin-bottom: 1.5rem;
+  background-color: var(--light-card-bg);
+}
+
+.dark-theme .card {
+  background-color: var(--dark-card-bg);
+  border-color: var(--dark-card-border);
+  box-shadow: 0 2px 8px var(--dark-shadow);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px var(--light-shadow);
+}
+
+.dark-theme .card:hover {
+  box-shadow: 0 4px 12px var(--dark-shadow);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+  margin: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--light-primary);
+  border-color: var(--light-primary);
+}
+
+.dark-theme .btn-primary {
+  background-color: var(--dark-primary);
+  border-color: var(--dark-primary);
+}
+
+.btn-secondary {
+  background-color: var(--light-secondary);
+  border-color: var(--light-secondary);
+}
+
+.dark-theme .btn-secondary {
+  background-color: var(--dark-secondary);
+  border-color: var(--dark-secondary);
+}
+
+.btn-success {
+  background-color: var(--light-success);
+  border-color: var(--light-success);
+}
+
+.dark-theme .btn-success {
+  background-color: var(--dark-success);
+  border-color: var(--dark-success);
+}
+
+/* Form Controls */
+.form-control,
+.form-control-file {
+  border-radius: 6px;
+  border: 1px solid var(--light-card-border);
+  padding: 0.625rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.3s ease;
+  background-color: var(--light-input-bg);
+  color: var(--light-text);
+}
+
+.dark-theme .form-control,
+.dark-theme .form-control-file {
+  background-color: var(--dark-input-bg);
+  border-color: var(--dark-card-border);
+  color: var(--dark-text);
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* List Group Items */
+.list-group-item {
+  border: 1px solid var(--light-card-border);
+  margin-bottom: 10px;
+  border-radius: 8px !important;
+  transition: background-color 0.3s ease;
+  background-color: var(--light-card-bg);
+}
+
+.dark-theme .list-group-item {
+  background-color: var(--dark-card-bg);
+  border-color: var(--dark-card-border);
+  color: var(--dark-text);
+}
+
+/* Navbar */
+.navbar {
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 10px var(--light-shadow);
+  transition: background-color 0.3s ease;
+}
+
+.dark-theme .navbar {
+  background-color: var(--dark-container-bg) !important;
+  box-shadow: 0 2px 10px var(--dark-shadow);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* Theme Toggle Switch */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  width: 48px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  background-color: white;
+  bottom: 2px;
+  content: "";
+  height: 20px;
+  left: 2px;
+  position: absolute;
+  transition: 0.4s;
+  width: 20px;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--dark-primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--light-container-bg);
+  padding: 1rem 0;
+  margin-top: auto;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.dark-theme .footer {
+  background-color: var(--dark-container-bg);
+}
+
+/* MCQ specific styles */
+.correct-answer {
+  color: #28a745;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: none;
+}
+
+.dark-theme .correct-answer {
+  color: #4caf50;
+}
+
+/* Radio buttons styling */
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--light-primary);
+  border-color: var(--light-primary);
+}
+
+.dark-theme
+  .custom-radio
+  .custom-control-input:checked
+  ~ .custom-control-label::before {
+  background-color: var(--dark-primary);
+  border-color: var(--dark-primary);
+}
+
+/* Animation for page transitions */
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
+}
