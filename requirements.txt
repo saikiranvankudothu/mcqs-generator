@@ -1,6 +1,6 @@
 Flask==2.2.5
 flask-bootstrap==3.3.7.1
-spacy==3.7.2
+spacy==3.5.4
 PyPDF2==3.0.1
 requests==2.31.0
 beautifulsoup4==4.12.3
@@ -8,4 +8,3 @@ reportlab==3.6.13
 tensorflow==2.15.0
 numpy==1.23.5
 gunicorn==21.2.0
-blis==0.7.9
