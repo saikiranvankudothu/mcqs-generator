@@ -1,6 +1,6 @@
 Flask==2.2.5
-Flask-Bootstrap==3.3.7.0
-spacy==3.7.2
+Flask-Bootstrap
+spacy
 PyPDF2==3.0.1
 requests==2.31.0
 beautifulsoup4==4.12.3
