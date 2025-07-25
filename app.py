@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, send_file, session, url_for, 
 from flask_bootstrap import Bootstrap
 import spacy
 import random
+import subprocess
 from collections import Counter
 from PyPDF2 import PdfReader
 import requests
@@ -35,17 +36,22 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit file uploads to 16M
 Bootstrap(app)
 
 # Load spaCy model with word vectors (using medium model for vectors)
-try:
-    nlp = spacy.load("en_core_web_md")
-    logger.info("SpaCy model loaded successfully")
-except Exception as e:
-    logger.error(f"Error loading SpaCy model: {e}")
-    # Fall back to small model if medium not available
+def load_spacy_model():
+    model_name = "en_core_web_md"
     try:
-        nlp = spacy.load("en_core_web_sm")
-        logger.warning("Using smaller SpaCy model as fallback")
-    except:
-        logger.critical("Cannot load any SpaCy model!")
+        return spacy.load(model_name)
+    except OSError:
+        logging.warning(f"{model_name} not found. Attempting to download it...")
+        try:
+            subprocess.run(["python", "-m", "spacy", "download", model_name], check=True)
+            return spacy.load(model_name)
+        except Exception as e:
+            logging.critical(f"Failed to download {model_name}: {e}")
+            return None
+
+nlp = load_spacy_model()
+if not nlp:
+    raise RuntimeError("Cannot continue without spaCy model.")
 
 # ---------------------------
 # LSTM-based MCQ Generation Functions
