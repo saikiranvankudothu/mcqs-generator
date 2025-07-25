@@ -3,7 +3,6 @@ from flask_bootstrap import Bootstrap
 import spacy
 import random
 import subprocess
-from collections import Counter
 from PyPDF2 import PdfReader
 import requests
 from bs4 import BeautifulSoup
@@ -37,7 +36,7 @@ Bootstrap(app)
 
 # Load spaCy model with word vectors (using medium model for vectors)
 def load_spacy_model():
-    model_name = "en_core_web_md"
+    model_name = "en_core_web_sm"
     try:
         return spacy.load(model_name)
     except OSError:
