@@ -1,5 +1,6 @@
 Flask==2.2.5
 flask-bootstrap4
+visitor
 spacy==3.7.2
 PyPDF2==3.0.1
 requests==2.31.0
