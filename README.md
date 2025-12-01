@@ -4,8 +4,6 @@
 
 ---
 
-![Uploading Gemini_Generated_Image_3wahgu3wahgu3wah.png…]()
-
 
 
 ## ✨ Features
